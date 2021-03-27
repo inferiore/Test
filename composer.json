@@ -1,0 +1,21 @@
+{
+    "name": "zinobe/directorio",
+    "description": "Prueba de conocimiento en zinobe",
+    "authors": [
+        {
+            "name": "eder",
+            "email": "ederb1.1c@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^7.30",
+        "raveren/kint": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Directorio\\Modelos\\":"Models/",
+            "Directorio\\Constroladores\\":"Controllers/",
+            "Directorio\\Vistas\\":"Views/"
+        }
+    }
+}
