@@ -1,6 +1,6 @@
 <?php
 use Jenssegers\Blade\Blade;
-
+use Rakit\Validation\Validator;
 class App{
 
     function __construct()
@@ -12,11 +12,11 @@ class App{
             . substr($elementos[0],1,strlen($elementos[0]));
         $funcion = explode("?",$elementos[1])[0];
 
-//          var_dump($_GET);
         $datos = $this->getDatos($_SERVER['REQUEST_METHOD']);
         $blade = new Blade('Views', 'Cache');
-        $ruta = "Directorio\Controladores\Usuarios";
-        $controlador = new $ruta($datos,$blade);
+        $validador = new Validator();
+        $ruta = "Directorio\Controladores\\".$clase;
+        $controlador = new $ruta($datos,$blade,$validador);
 
         if(isset($elementos[1])){
             $controlador->{$funcion}();

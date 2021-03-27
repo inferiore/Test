@@ -10,7 +10,8 @@
     "require": {
         "illuminate/database": "^7.30",
         "raveren/kint": "^3.1",
-        "jenssegers/blade": "^1.4"
+        "jenssegers/blade": "^1.4",
+        "rakit/validation": "^1.4"
     },
     "autoload": {
         "psr-4": {
