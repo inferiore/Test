@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Identificacion
+        </th>
+        <th>
+            Email
+        </th>
+    </thead>
+    <tbody>
+    @foreach($usuarios as $usuario)
+        <td>
+            {{$usuario["nombre_completo"]}}
+        </td>
+        <td>
+            {{$usuario["identificacion"]}}
+        </td>
+        <td>
+            {{$usuario["email"]}}
+        </td>
+    @endforeach
+    </tbody>
+</table>

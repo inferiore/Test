@@ -3,8 +3,13 @@ namespace Directorio\Controladores;
 
 class ControladorBase {
 
-    public function __construct()
+    public  $request;
+    public  $blade;
+
+    public function __construct($request,$blade)
     {
-        echo "desde ControladorBase";
+        $this->request = $request;
+        $this->blade = $blade;
+
     }
 }
