@@ -1,0 +1,4 @@
+RewriteEngine On
+#todas las url van al index.php, con el fin de tener un punto de partido de toda mi applicacion
+AllowOverride All
+RewriteRule ^(.*)$ index.php

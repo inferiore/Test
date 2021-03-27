@@ -14,7 +14,7 @@
     "autoload": {
         "psr-4": {
             "Directorio\\Modelos\\":"Models/",
-            "Directorio\\Constroladores\\":"Controllers/",
+            "Directorio\\Controladores\\":"Controllers/",
             "Directorio\\Vistas\\":"Views/"
         }
     }
