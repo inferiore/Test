@@ -1,3 +1,7 @@
+Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
+Header set Strict-Transport-Security "max-age=63072000; includeSubDomains" env=HTTP
+Header always edit Set-Cookie (.*) "$1; SameSite=Lax"
+
 RewriteEngine On
 #todas las url van al index.php, con el fin de tener un punto de partido de toda mi applicacion
 AllowOverride All
