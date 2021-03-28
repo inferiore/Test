@@ -15,10 +15,11 @@ class ControladorBase {
         $this->datos = $datos;
         $this->blade = $blade;
         $this->validador = $validador;
-        Session::init(3600);
+        Session::init(variables_de_ambiente("SESSION_LIFE_TIME",3600));
     }
 
     protected function validar($data,$reglas){
+
         return $this->validador->validate($data,$reglas,[
             'required' => ':attribute no debe ser nulo',
             'email' => 'El :attribute debe ser valido',
@@ -30,6 +31,7 @@ class ControladorBase {
     }
 
     protected function redireccionar($to){
+
         header("Location:".$to);
         exit;
     }
