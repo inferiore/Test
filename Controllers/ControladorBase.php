@@ -19,18 +19,7 @@ class ControladorBase {
 
     }
 
-    protected function validar($data,$reglas){
 
-        return $this->validador->validate($data,$reglas,[
-            'required' => ':attribute no debe ser nulo',
-            'email' => 'El :attribute debe ser valido',
-            'regex' => ':attribute debe tener al menos un numero',
-            'min' => ':attribute debe tener minimo :min caracteres',
-            'unique' => ':attribute ya fue seleccionado'
-
-        ])
-        ;
-    }
 
     protected function redireccionar($to){
 

@@ -1,6 +1,4 @@
 <?php
-use Rakit\Validation\Validator;
-use Directorio\Reglas\UniqueRule;
 
 class App{
 
@@ -14,10 +12,8 @@ class App{
         $funcion = explode("?",$elementos[1])[0];
 
         $datos = $this->getDatos($_SERVER['REQUEST_METHOD']);
+        $validador = new \Directorio\Librerias\Validador($pdo);
 
-
-        $validador = new Validator();
-        $validador->addValidator('unique', new UniqueRule($pdo));
         $ruta = "Directorio\Controladores\\".$clase;
         $controlador = new $ruta($datos,$validador);
 

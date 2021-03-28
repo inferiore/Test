@@ -35,7 +35,7 @@ class Usuarios extends ControladorBase {
 
     function almacenar(){
         $error = null;
-        $validacion = $this->validar($this->datos,
+        $validacion = $this->validador->validar($this->datos,
             [
                 "nombre_completo" => "required|min:3",
                 "identificacion" => "required|unique:usuarios,identificacion",
@@ -43,8 +43,8 @@ class Usuarios extends ControladorBase {
                 "contrasena" => "required|min:6|regex:(.*[0-9].*)",
                 "pais" => "required",
             ]);
-        if ($validacion->fails()) {
-            $errors = $validacion->errors();
+        if ($validacion) {
+            $errors = $this->validador->errors();
             $paises = CustomerData::obtener_paises();
             echo Vista::renderizar('registro',array_merge(
                 $this->datos,["errors"=>$errors->firstOfAll(),"paises"=>$paises])
