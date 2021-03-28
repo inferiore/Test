@@ -4,7 +4,7 @@ namespace Directorio\Controladores;
 
 use Directorio\Modelos\Usuario;
 
-use Directorio\Reposorio\CustomerData;
+use Directorio\Repositorio\CustomerData;
 use Josantonius\Session\Session;
 class Autenticacion extends ControladorBase
 {
@@ -17,7 +17,7 @@ class Autenticacion extends ControladorBase
 
     public function login(){
 
-        $user = CustomerData::bucar_usuario_por_contrasena_e_email($this->datos["email"],encriptar($this->datos["contrasena"]));
+        $user = CustomerData::bucar_usuario_por_contrasena_e_email($this->datos["email"],($this->datos["contrasena"]));
 
         if(!is_null($user)){
             Session::set("user",$user);

@@ -19,8 +19,19 @@
     <label for="email">E-mail</label>
     <input id="email"  name="email" type="text" value="{{$email}}">
     <br>
+    <label for="pais">Paises</label>
+    <select id="pais"  name="pais">
+        @foreach($paises as $ppais)
+        <option value="{{$ppais["country"]}}" {{($ppais["country"] == $pais)?"selected":null}} >
+            {{ $ppais["region"] }} -{{$ppais["country"]}}
+        </option>
+        @endforeach
+    </select>
+    <br>
+
     <label for="contrasena">Contraseña</label>
     <input id="contrasena"  name="contrasena" type="password" value="{{$email}}">
     <br>
+
     <input id="buscar" name="buscar" type="submit">
 </form>

@@ -2,6 +2,7 @@
 namespace Directorio\Controladores;
 
 use Directorio\Modelos\Usuario;
+use Directorio\Repositorio\CustomerData;
 use Josantonius\Session\Session;
 
 class Usuarios extends ControladorBase {
@@ -15,7 +16,7 @@ class Usuarios extends ControladorBase {
 
         $nombre_o_email = (isset($this->datos["nombre_o_email"])) ? $this->datos["nombre_o_email"] : null;
 
-        $usuarios = \Directorio\Reposorio\CustomerData::buscar_por_email_o_nombre($nombre_o_email);
+        $usuarios = CustomerData::buscar_por_email_o_nombre($nombre_o_email);
 
         echo $this->renderizar('listado',
             [
@@ -28,7 +29,8 @@ class Usuarios extends ControladorBase {
         if($this->estaLogeado()){
             $this->redireccionar("../usuarios/listar");
         }
-        echo $this->renderizar('registro',[]);
+        $paises = CustomerData::obtener_paises();
+        echo $this->renderizar('registro',["paises" => $paises]);
     }
 
     function almacenar(){
@@ -36,17 +38,21 @@ class Usuarios extends ControladorBase {
         $validacion = $this->validar($this->datos,
             [
                 "nombre_completo" => "required|min:3",
-                "email" => "email|required",
-                "identificacion" => "required",
+                "identificacion" => "required|unique:usuarios,identificacion",
+                "email" => "unique:usuarios,email|email|required",
                 "contrasena" => "required|min:6|regex:(.*[0-9].*)",
+                "pais" => "required",
             ]);
         if ($validacion->fails()) {
             $errors = $validacion->errors();
-            echo $this->renderizar('registro',array_merge($this->datos,["errors"=>$errors->firstOfAll()]));
+            $paises = CustomerData::obtener_paises();
+            echo $this->renderizar('registro',array_merge(
+                $this->datos,["errors"=>$errors->firstOfAll(),"paises"=>$paises])
+            );
 
         } else {
             $datos = $this->datos;
-            $datos["contrasena"] = hash("md5",$this->datos["contrasena"]);
+            $datos["contrasena"] = encriptar($this->datos["contrasena"]);
             Usuario::create($datos);
             $this->redireccionar("../autenticacion/formulariologin");
         }

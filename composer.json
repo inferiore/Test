@@ -21,7 +21,8 @@
             "Directorio\\Modelos\\":"Models/",
             "Directorio\\Controladores\\":"Controllers/",
             "Directorio\\Vistas\\":"Views/",
-            "Directorio\\Repositorio\\":"Repository/"
+            "Directorio\\Repositorio\\":"Repository/",
+            "Directorio\\Reglas\\": "CustomValidations/"
         }
     }
 }

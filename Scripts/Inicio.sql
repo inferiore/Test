@@ -1,4 +1,6 @@
-CREATE DATABASE mydatabase CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE directorio CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+use directorio;
 
 CREATE TABLE usuarios (
   id int(11)  UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -6,6 +8,8 @@ CREATE TABLE usuarios (
   email VARCHAR( 50 ) NOT NULL ,
   identificacion VARCHAR( 50 ) NOT  NULL ,
   contrasena VARCHAR( 50 ) NOT NULL ,
+  pais VARCHAR( 50 ) NOT NULL ,
+
   PRIMARY KEY (id) ,
   KEY (id)                          -- or:    UNIQUE KEY (id)
 );

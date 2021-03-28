@@ -14,3 +14,5 @@ $database->addConnection([
 
 $database->setAsGlobal();
 $database->bootEloquent();
+$pdo = $database->getConnection()->getPdo();
+

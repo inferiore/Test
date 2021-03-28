@@ -7,7 +7,6 @@ class ControladorBase {
     protected  $datos;
     protected  $blade;
     protected  $validador;
-    protected $manejadorDeSesion;
     protected $http;
 
 
@@ -27,7 +26,8 @@ class ControladorBase {
             'required' => ':attribute no debe ser nulo',
             'email' => 'El :attribute debe ser valido',
             'regex' => ':attribute debe tener al menos un numero',
-            'min' => ':attribute debe tener minimo :min caracteres'
+            'min' => ':attribute debe tener minimo :min caracteres',
+            'unique' => ':attribute ya fue seleccionado'
 
         ])
         ;
