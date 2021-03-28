@@ -18,3 +18,8 @@
 5. Ir a la raiz del proyecto y ejecutar ` php -S localhost:8000 index.php` para levantar el servidor web
 
 
+* usuarios/almacenar-> formularios para registrar usuarios
+* autenticacion/formulariologin -> formulario para login
+* usuarios/listar -> listado de usuarios
+
+
