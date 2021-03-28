@@ -8,6 +8,8 @@ class ControladorBase {
     protected  $blade;
     protected  $validador;
     protected $manejadorDeSesion;
+    protected $http;
+
 
 
     public function __construct($datos,$blade,$validador)
@@ -16,6 +18,7 @@ class ControladorBase {
         $this->blade = $blade;
         $this->validador = $validador;
         Session::init(variables_de_ambiente("SESSION_LIFE_TIME",3600));
+
     }
 
     protected function validar($data,$reglas){
@@ -42,6 +45,11 @@ class ControladorBase {
 
     }
 
+    protected function renderizar($vista,$variables = []){
+
+        return $this->blade->make($vista,$variables)->render();
+
+    }
 
 
 }

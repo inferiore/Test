@@ -4,3 +4,7 @@ function variables_de_ambiente($clave,$valor_por_defecto = null){
     $env = $dotenv->safeLoad();
     return (isset($env[$clave]))?$env[$clave]:$valor_por_defecto;
 }
+
+function encriptar($cadena){
+    return hash("md5",$cadena);
+}

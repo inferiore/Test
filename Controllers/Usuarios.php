@@ -15,24 +15,20 @@ class Usuarios extends ControladorBase {
 
         $nombre_o_email = (isset($this->datos["nombre_o_email"])) ? $this->datos["nombre_o_email"] : null;
 
-        $usuarios = \Directorio\Modelos\Usuario::when(!is_null($nombre_o_email),function($query) use ($nombre_o_email){
-            return $query->where("email","like","%".$nombre_o_email."%")
-                ->orWhere("nombre_completo","like","%".$nombre_o_email."%");
-        })->get();
-        echo $this->blade->make('listado',
+        $usuarios = \Directorio\Reposorio\CustomerData::buscar_por_email_o_nombre($nombre_o_email);
+
+        echo $this->renderizar('listado',
             [
                 'usuarios' => $usuarios,
                 'nombre_o_email'=>$nombre_o_email
-            ])
-            ->render();
+            ]);
     }
 
     function registrar(){
         if($this->estaLogeado()){
             $this->redireccionar("../usuarios/listar");
         }
-        echo $this->blade->make('registro',[])
-            ->render();
+        echo $this->renderizar('registro',[]);
     }
 
     function almacenar(){
@@ -46,8 +42,7 @@ class Usuarios extends ControladorBase {
             ]);
         if ($validacion->fails()) {
             $errors = $validacion->errors();
-            echo $this->blade->make('registro',array_merge($this->datos,["errors"=>$errors->firstOfAll()]))
-                ->render();
+            echo $this->renderizar('registro',array_merge($this->datos,["errors"=>$errors->firstOfAll()]));
 
         } else {
             $datos = $this->datos;

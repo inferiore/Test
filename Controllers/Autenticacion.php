@@ -4,6 +4,7 @@ namespace Directorio\Controladores;
 
 use Directorio\Modelos\Usuario;
 
+use Directorio\Reposorio\CustomerData;
 use Josantonius\Session\Session;
 class Autenticacion extends ControladorBase
 {
@@ -11,14 +12,12 @@ class Autenticacion extends ControladorBase
         if($this->estaLogeado()){
             $this->redireccionar("../usuarios/listar");
         }
-        echo $this->blade->make("login")->render();
+        echo $this->renderizar("login");
     }
 
     public function login(){
 
-        $user = Usuario::where("email",$this->datos["email"])
-            ->where("contrasena",hash("md5",$this->datos["contrasena"]))
-        ->first()->toArray();
+        $user = CustomerData::bucar_usuario_por_contrasena_e_email($this->datos["email"],encriptar($this->datos["contrasena"]));
 
         if(!is_null($user)){
             Session::set("user",$user);

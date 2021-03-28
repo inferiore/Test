@@ -13,13 +13,15 @@
         "jenssegers/blade": "^1.4",
         "rakit/validation": "^1.4",
         "josantonius/session": "^1.1",
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "guzzlehttp/guzzle": "^7.0"
     },
     "autoload": {
         "psr-4": {
             "Directorio\\Modelos\\":"Models/",
             "Directorio\\Controladores\\":"Controllers/",
-            "Directorio\\Vistas\\":"Views/"
+            "Directorio\\Vistas\\":"Views/",
+            "Directorio\\Repositorio\\":"Repository/"
         }
     }
 }
