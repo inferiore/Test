@@ -11,10 +11,9 @@ class ControladorBase {
 
 
 
-    public function __construct($datos,$blade,$validador)
+    public function __construct($datos,$validador)
     {
         $this->datos = $datos;
-        $this->blade = $blade;
         $this->validador = $validador;
         Session::init(variables_de_ambiente("SESSION_LIFE_TIME",3600));
 
@@ -45,11 +44,7 @@ class ControladorBase {
 
     }
 
-    protected function renderizar($vista,$variables = []){
 
-        return $this->blade->make($vista,$variables)->render();
-
-    }
 
 
 }

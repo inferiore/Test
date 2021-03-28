@@ -1,5 +1,4 @@
 <?php
-use Jenssegers\Blade\Blade;
 use Rakit\Validation\Validator;
 use Directorio\Reglas\UniqueRule;
 
@@ -16,12 +15,11 @@ class App{
 
         $datos = $this->getDatos($_SERVER['REQUEST_METHOD']);
 
-        $blade = new Blade('Views', 'Cache');
 
         $validador = new Validator();
         $validador->addValidator('unique', new UniqueRule($pdo));
         $ruta = "Directorio\Controladores\\".$clase;
-        $controlador = new $ruta($datos,$blade,$validador);
+        $controlador = new $ruta($datos,$validador);
 
         if(isset($elementos[1])){
             $controlador->{$funcion}();

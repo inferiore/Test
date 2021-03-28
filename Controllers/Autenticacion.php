@@ -2,6 +2,7 @@
 
 namespace Directorio\Controladores;
 
+use Directorio\Librerias\Vista;
 use Directorio\Modelos\Usuario;
 
 use Directorio\Repositorio\CustomerData;
@@ -12,12 +13,12 @@ class Autenticacion extends ControladorBase
         if($this->estaLogeado()){
             $this->redireccionar("../usuarios/listar");
         }
-        echo $this->renderizar("login");
+        echo Vista::renderizar("login");
     }
 
     public function login(){
 
-        $user = CustomerData::bucar_usuario_por_contrasena_e_email($this->datos["email"],($this->datos["contrasena"]));
+        $user = CustomerData::bucar_usuario_por_contrasena_e_email($this->datos["email"],encriptar($this->datos["contrasena"]));
 
         if(!is_null($user)){
             Session::set("user",$user);

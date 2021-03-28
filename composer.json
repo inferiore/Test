@@ -22,7 +22,8 @@
             "Directorio\\Controladores\\":"Controllers/",
             "Directorio\\Vistas\\":"Views/",
             "Directorio\\Repositorio\\":"Repository/",
-            "Directorio\\Reglas\\": "CustomValidations/"
+            "Directorio\\Reglas\\": "CustomValidations/",
+            "Directorio\\Librerias\\": "Libs/"
         }
     }
 }

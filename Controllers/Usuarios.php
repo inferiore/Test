@@ -3,7 +3,7 @@ namespace Directorio\Controladores;
 
 use Directorio\Modelos\Usuario;
 use Directorio\Repositorio\CustomerData;
-use Josantonius\Session\Session;
+use Directorio\Librerias\Vista;
 
 class Usuarios extends ControladorBase {
 
@@ -18,7 +18,7 @@ class Usuarios extends ControladorBase {
 
         $usuarios = CustomerData::buscar_por_email_o_nombre($nombre_o_email);
 
-        echo $this->renderizar('listado',
+        echo Vista::renderizar('listado',
             [
                 'usuarios' => $usuarios,
                 'nombre_o_email'=>$nombre_o_email
@@ -30,7 +30,7 @@ class Usuarios extends ControladorBase {
             $this->redireccionar("../usuarios/listar");
         }
         $paises = CustomerData::obtener_paises();
-        echo $this->renderizar('registro',["paises" => $paises]);
+        echo Vista::renderizar('registro',["paises" => $paises]);
     }
 
     function almacenar(){
@@ -46,7 +46,7 @@ class Usuarios extends ControladorBase {
         if ($validacion->fails()) {
             $errors = $validacion->errors();
             $paises = CustomerData::obtener_paises();
-            echo $this->renderizar('registro',array_merge(
+            echo Vista::renderizar('registro',array_merge(
                 $this->datos,["errors"=>$errors->firstOfAll(),"paises"=>$paises])
             );
 
