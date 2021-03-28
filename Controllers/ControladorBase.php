@@ -1,12 +1,13 @@
 <?php
 namespace Directorio\Controladores;
-
+use Josantonius\Session\Session;
 
 class ControladorBase {
 
     protected  $datos;
     protected  $blade;
     protected  $validador;
+    protected $manejadorDeSesion;
 
 
     public function __construct($datos,$blade,$validador)
@@ -14,12 +15,11 @@ class ControladorBase {
         $this->datos = $datos;
         $this->blade = $blade;
         $this->validador = $validador;
-
-
+        Session::init(3600);
     }
 
-    protected function validar($data,$rules){
-        return $this->validador->validate($data,$rules,[
+    protected function validar($data,$reglas){
+        return $this->validador->validate($data,$reglas,[
             'required' => ':attribute no debe ser nulo',
             'email' => 'El :attribute debe ser valido',
             'regex' => ':attribute debe tener al menos un numero',
@@ -29,9 +29,15 @@ class ControladorBase {
         ;
     }
 
-    protected function redirecto($to){
+    protected function redireccionar($to){
         header("Location:".$to);
         exit;
+    }
+
+    protected function estaLogeado(){
+
+        return (!is_null(Session::get("user")));
+
     }
 
 

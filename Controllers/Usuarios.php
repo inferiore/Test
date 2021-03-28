@@ -2,11 +2,16 @@
 namespace Directorio\Controladores;
 
 use Directorio\Modelos\Usuario;
+use Josantonius\Session\Session;
 
 class Usuarios extends ControladorBase {
 
 
     function listar(){
+
+        if(!$this->estaLogeado()){
+            $this->redireccionar("../autenticacion/formulariologin");
+        }
 
         $nombre_o_email = (isset($this->datos["nombre_o_email"])) ? $this->datos["nombre_o_email"] : null;
 
@@ -21,10 +26,15 @@ class Usuarios extends ControladorBase {
             ])
             ->render();
     }
+
     function registrar(){
+        if($this->estaLogeado()){
+            $this->redireccionar("../usuarios/listar");
+        }
         echo $this->blade->make('registro',[])
             ->render();
     }
+
     function almacenar(){
         $error = null;
         $validacion = $this->validar($this->datos,
@@ -43,14 +53,9 @@ class Usuarios extends ControladorBase {
             $datos = $this->datos;
             $datos["contrasena"] = hash("md5",$this->datos["contrasena"]);
             Usuario::create($datos);
-
-            $this->redirecto("../autenticacion/formulariologin");
+            $this->redireccionar("../autenticacion/formulariologin");
         }
 
     }
-
-
-
-
 
 }

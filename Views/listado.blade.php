@@ -32,3 +32,5 @@
     @endforeach
     </tbody>
 </table>
+
+<a href="../autenticacion/logout"> Salir </a>
